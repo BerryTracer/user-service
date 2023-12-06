@@ -9,7 +9,7 @@ import (
 
 type UserService interface {
 	CreateUser(ctx context.Context, username, email, password string) (*model.User, error)
-	GetUser(ctx context.Context, id string) (*model.User, error)
+	GetUserById(ctx context.Context, id string) (*model.User, error)
 	GetUserByEmail(ctx context.Context, email string) (*model.User, error)
 	GetUserByUsername(ctx context.Context, username string) (*model.User, error)
 }
@@ -32,7 +32,7 @@ func (s *UserServiceImpl) CreateUser(ctx context.Context, username string, email
 }
 
 // GetUser implements UserService.
-func (s *UserServiceImpl) GetUser(ctx context.Context, id string) (*model.User, error) {
+func (s *UserServiceImpl) GetUserById(ctx context.Context, id string) (*model.User, error) {
 	return s.UserRepository.GetUserById(ctx, id)
 }
 
