@@ -66,3 +66,13 @@ func (s *UserGRPCServer) GetUserByUsername(ctx context.Context, req *user_servic
 
 	return user.ConvertToProto(), nil
 }
+
+func (s *UserGRPCServer) CreateUser(ctx context.Context, req *user_service.CreateUserRequest) (*user_service.User, error) {
+	user, err := s.UserService.CreateUser(ctx, req.GetUsername(), req.GetEmail(), req.GetPassword())
+	if err != nil {
+		log.Fatalf("failed to create user: %v\n", err)
+		return nil, err
+	}
+
+	return user.ConvertToProto(), nil
+}
