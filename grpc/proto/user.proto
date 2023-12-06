@@ -28,15 +28,10 @@ message GetUserByUsernameRequest {
     string username = 1;
 }
 
-message UserResponse {
-    User user = 1;
-    string error = 2; // Use string to represent error messages
-}
-
 // UserService provides operations on users.
 service UserService {
-    rpc CreateUser (CreateUserRequest) returns (UserResponse);
-    rpc GetUser (GetUserRequest) returns (UserResponse);
-    rpc GetUserByEmail (GetUserByEmailRequest) returns (UserResponse);
-    rpc GetUserByUsername (GetUserByUsernameRequest) returns (UserResponse);
+    rpc CreateUser (CreateUserRequest) returns (User);
+    rpc GetUser (GetUserRequest) returns (User);
+    rpc GetUserByEmail (GetUserByEmailRequest) returns (User);
+    rpc GetUserByUsername (GetUserByUsernameRequest) returns (User);
 }

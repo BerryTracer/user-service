@@ -37,38 +37,32 @@ func (s *UserGRPCServer) Run(port string) error {
 	return nil
 }
 
-func (s *UserGRPCServer) GetUserById(ctx context.Context, req *user_service.GetUserRequest) (*user_service.UserResponse, error) {
+func (s *UserGRPCServer) GetUserById(ctx context.Context, req *user_service.GetUserRequest) (*user_service.User, error) {
 	user, err := s.UserService.GetUserById(ctx, req.GetId())
 	if err != nil {
 		log.Fatalf("failed to get user by id: %v\n", err)
 		return nil, err
 	}
 
-	return &user_service.UserResponse{
-		User: user.ConvertToProto(),
-	}, nil
+	return user.ConvertToProto(), nil
 }
 
-func (s *UserGRPCServer) GetUserByEmail(ctx context.Context, req *user_service.GetUserByEmailRequest) (*user_service.UserResponse, error) {
+func (s *UserGRPCServer) GetUserByEmail(ctx context.Context, req *user_service.GetUserByEmailRequest) (*user_service.User, error) {
 	user, err := s.UserService.GetUserByEmail(ctx, req.GetEmail())
 	if err != nil {
 		log.Fatalf("failed to get user by email: %v\n", err)
 		return nil, err
 	}
 
-	return &user_service.UserResponse{
-		User: user.ConvertToProto(),
-	}, nil
+	return user.ConvertToProto(), nil
 }
 
-func (s *UserGRPCServer) GetUserByUsername(ctx context.Context, req *user_service.GetUserByUsernameRequest) (*user_service.UserResponse, error) {
+func (s *UserGRPCServer) GetUserByUsername(ctx context.Context, req *user_service.GetUserByUsernameRequest) (*user_service.User, error) {
 	user, err := s.UserService.GetUserByUsername(ctx, req.GetUsername())
 	if err != nil {
 		log.Fatalf("failed to get user by username: %v\n", err)
 		return nil, err
 	}
 
-	return &user_service.UserResponse{
-		User: user.ConvertToProto(),
-	}, nil
+	return user.ConvertToProto(), nil
 }
