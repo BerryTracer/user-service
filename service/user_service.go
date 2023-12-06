@@ -19,6 +19,11 @@ type UserServiceImpl struct {
 	UserRepository repository.UserRepository
 }
 
+// NewUserService returns a new UserServiceImpl.
+func NewUserService(userRepository repository.UserRepository) *UserServiceImpl {
+	return &UserServiceImpl{UserRepository: userRepository}
+}
+
 // CreateUser implements UserService.
 func (s *UserServiceImpl) CreateUser(ctx context.Context, username string, email string, password string) (*model.User, error) {
 
@@ -29,6 +34,10 @@ func (s *UserServiceImpl) CreateUser(ctx context.Context, username string, email
 	}
 
 	user := model.NewUser(username, email, string(hashedPassword))
+
+	if err := user.Validate(); err != nil {
+		return nil, err
+	}
 
 	err = s.UserRepository.CreateUser(ctx, user)
 

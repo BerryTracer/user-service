@@ -20,6 +20,11 @@ type UserMongoRepository struct {
 	Collection adapter.MongoAdapter
 }
 
+// NewUserMongoRepository returns a new UserMongoRepository.
+func NewUserMongoRepository(collection adapter.MongoAdapter) *UserMongoRepository {
+	return &UserMongoRepository{Collection: collection}
+}
+
 // CreateUser implements UserRepository.
 func (r *UserMongoRepository) CreateUser(ctx context.Context, user *model.User) error {
 	userDB, err := user.ToUserDB()

@@ -25,6 +25,7 @@ type UserDB struct {
 // NewUser creates a new User instance
 func NewUser(username, email, hashedPassword string) *User {
 	return &User{
+		ID:             primitive.NewObjectID().Hex(),
 		Username:       username,
 		Email:          email,
 		HashedPassword: hashedPassword,

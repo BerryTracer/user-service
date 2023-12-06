@@ -16,7 +16,7 @@ message CreateUserRequest {
     string password = 3;
 }
 
-message GetUserRequest {
+message GetUserByIdRequest {
     string id = 1;
 }
 
@@ -31,7 +31,7 @@ message GetUserByUsernameRequest {
 // UserService provides operations on users.
 service UserService {
     rpc CreateUser (CreateUserRequest) returns (User);
-    rpc GetUser (GetUserRequest) returns (User);
+    rpc GetUserById (GetUserByIdRequest) returns (User);
     rpc GetUserByEmail (GetUserByEmailRequest) returns (User);
     rpc GetUserByUsername (GetUserByUsernameRequest) returns (User);
 }

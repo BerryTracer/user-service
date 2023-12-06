@@ -37,7 +37,7 @@ func (s *UserGRPCServer) Run(port string) error {
 	return nil
 }
 
-func (s *UserGRPCServer) GetUserById(ctx context.Context, req *proto.GetUserRequest) (*proto.User, error) {
+func (s *UserGRPCServer) GetUserById(ctx context.Context, req *proto.GetUserByIdRequest) (*proto.User, error) {
 	user, err := s.UserService.GetUserById(ctx, req.GetId())
 	if err != nil {
 		log.Fatalf("failed to get user by id: %v\n", err)
