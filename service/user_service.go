@@ -3,9 +3,9 @@ package service
 import (
 	"context"
 
+	"github.com/BerryTracer/common-service/crypto"
 	"github.com/BerryTracer/user-service/model"
 	"github.com/BerryTracer/user-service/repository"
-	"golang.org/x/crypto/bcrypt"
 )
 
 type UserService interface {
@@ -17,17 +17,21 @@ type UserService interface {
 
 type UserServiceImpl struct {
 	UserRepository repository.UserRepository
+	PasswordHasher crypto.PasswordHasher
 }
 
 // NewUserService returns a new UserServiceImpl.
-func NewUserService(userRepository repository.UserRepository) *UserServiceImpl {
-	return &UserServiceImpl{UserRepository: userRepository}
+func NewUserService(userRepository repository.UserRepository, passwordHasher crypto.PasswordHasher) *UserServiceImpl {
+	return &UserServiceImpl{
+		UserRepository: userRepository,
+		PasswordHasher: passwordHasher,
+	}
 }
 
 // CreateUser implements UserService.
 func (s *UserServiceImpl) CreateUser(ctx context.Context, username string, email string, password string) (*model.User, error) {
 
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	hashedPassword, err := s.PasswordHasher.HashPassword(password)
 
 	if err != nil {
 		return nil, err
