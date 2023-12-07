@@ -27,6 +27,26 @@ func NewUserMongoDatabaseConnection(connStr, databaseStr, collectionStr string) 
 	db := client.Database(databaseStr)
 	collection := db.Collection(collectionStr)
 
+	emailIndexModel := mongo.IndexModel{
+		Keys:    map[string]int{"email": 1},
+		Options: options.Index().SetUnique(true),
+	}
+
+	usernameIndexModel := mongo.IndexModel{
+		Keys:    map[string]int{"username": 1},
+		Options: options.Index().SetUnique(true),
+	}
+
+	_, err = collection.Indexes().CreateMany(context.Background(), []mongo.IndexModel{emailIndexModel, usernameIndexModel})
+	if err != nil {
+		return nil, err
+	}
+
+	collection.Indexes().CreateOne(context.Background(), mongo.IndexModel{
+		Keys:    map[string]int{"email": 1, "username": 1},
+		Options: options.Index().SetUnique(true),
+	})
+
 	return &UserMongoDatabase{Client: client, Collection: collection}, nil
 }
 
