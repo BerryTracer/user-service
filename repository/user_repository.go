@@ -2,7 +2,6 @@ package repository
 
 import (
 	"context"
-	"log"
 
 	"github.com/BerryTracer/common-service/adapter"
 	"github.com/BerryTracer/user-service/model"
@@ -30,14 +29,12 @@ func (r *UserMongoRepository) CreateUser(ctx context.Context, user *model.User) 
 	userDB, err := user.ToUserDB()
 
 	if err != nil {
-		log.Fatalf("failed to convert user to user db: %v\n", err)
 		return err
 	}
 
 	_, err = r.Collection.InsertOne(ctx, userDB)
 
 	if err != nil {
-		log.Fatalf("failed to create user: %v\n", err)
 		return err
 	}
 
@@ -48,14 +45,12 @@ func (r *UserMongoRepository) CreateUser(ctx context.Context, user *model.User) 
 func (r *UserMongoRepository) GetUserById(ctx context.Context, id string) (*model.User, error) {
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-		log.Fatalf("failed to convert id to object id: %v\n", err)
 		return nil, err
 	}
 
 	var userDB model.UserDB
 	err = r.Collection.FindOne(ctx, primitive.M{"_id": objectID}).Decode(&userDB)
 	if err != nil {
-		log.Fatalf("failed to get user by id: %v\n", err)
 		return nil, err
 	}
 
@@ -67,7 +62,6 @@ func (r *UserMongoRepository) GetUserByEmail(ctx context.Context, email string) 
 	var userDB model.UserDB
 	err := r.Collection.FindOne(ctx, primitive.M{"email": email}).Decode(&userDB)
 	if err != nil {
-		log.Fatalf("failed to get user by email: %v\n", err)
 		return nil, err
 	}
 
@@ -79,7 +73,6 @@ func (r *UserMongoRepository) GetUserByUsername(ctx context.Context, username st
 	var userDB model.UserDB
 	err := r.Collection.FindOne(ctx, primitive.M{"username": username}).Decode(&userDB)
 	if err != nil {
-		log.Fatalf("failed to get user by username: %v\n", err)
 		return nil, err
 	}
 

@@ -40,7 +40,6 @@ func (s *UserGRPCServer) Run(port string) error {
 func (s *UserGRPCServer) GetUserById(ctx context.Context, req *proto.GetUserByIdRequest) (*proto.User, error) {
 	user, err := s.UserService.GetUserById(ctx, req.GetId())
 	if err != nil {
-		log.Fatalf("failed to get user by id: %v\n", err)
 		return nil, err
 	}
 
@@ -50,7 +49,6 @@ func (s *UserGRPCServer) GetUserById(ctx context.Context, req *proto.GetUserById
 func (s *UserGRPCServer) GetUserByEmail(ctx context.Context, req *proto.GetUserByEmailRequest) (*proto.User, error) {
 	user, err := s.UserService.GetUserByEmail(ctx, req.GetEmail())
 	if err != nil {
-		log.Fatalf("failed to get user by email: %v\n", err)
 		return nil, err
 	}
 
@@ -60,7 +58,6 @@ func (s *UserGRPCServer) GetUserByEmail(ctx context.Context, req *proto.GetUserB
 func (s *UserGRPCServer) GetUserByUsername(ctx context.Context, req *proto.GetUserByUsernameRequest) (*proto.User, error) {
 	user, err := s.UserService.GetUserByUsername(ctx, req.GetUsername())
 	if err != nil {
-		log.Fatalf("failed to get user by username: %v\n", err)
 		return nil, err
 	}
 
@@ -70,7 +67,6 @@ func (s *UserGRPCServer) GetUserByUsername(ctx context.Context, req *proto.GetUs
 func (s *UserGRPCServer) CreateUser(ctx context.Context, req *proto.CreateUserRequest) (*proto.User, error) {
 	user, err := s.UserService.CreateUser(ctx, req.GetUsername(), req.GetEmail(), req.GetPassword())
 	if err != nil {
-		log.Fatalf("failed to create user: %v\n", err)
 		return nil, err
 	}
 
