@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	mock "github.com/BerryTracer/common-service/adapter/mock"
+	mock "github.com/BerryTracer/common-service/adapter/database/mongodb/mock"
 	"github.com/BerryTracer/user-service/model"
 	"github.com/BerryTracer/user-service/repository"
 	"github.com/golang/mock/gomock"

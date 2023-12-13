@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 
-	"github.com/BerryTracer/common-service/adapter"
+	"github.com/BerryTracer/common-service/adapter/database/mongodb"
 	"github.com/BerryTracer/user-service/model"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -16,11 +16,11 @@ type UserRepository interface {
 }
 
 type UserMongoRepository struct {
-	Collection adapter.MongoAdapter
+	Collection mongodb.MongoAdapter
 }
 
 // NewUserMongoRepository returns a new UserMongoRepository.
-func NewUserMongoRepository(collection adapter.MongoAdapter) *UserMongoRepository {
+func NewUserMongoRepository(collection mongodb.MongoAdapter) *UserMongoRepository {
 	return &UserMongoRepository{Collection: collection}
 }
 

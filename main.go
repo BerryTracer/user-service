@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/BerryTracer/common-service/adapter"
+	"github.com/BerryTracer/common-service/adapter/database/mongodb"
 	"github.com/BerryTracer/common-service/config"
 	"github.com/BerryTracer/common-service/crypto"
 	"github.com/BerryTracer/user-service/database"
@@ -54,7 +54,7 @@ func initDatabase(mongodbURI string) *database.UserMongoDatabase {
 }
 
 func setupGRPCServer(db *database.UserMongoDatabase) *grpc.Server {
-	mongoDBAdapter := adapter.NewMongoAdapter(db.Collection)
+	mongoDBAdapter := mongodb.NewMongoAdapter(db.Collection)
 	userRepository := repository.NewUserMongoRepository(mongoDBAdapter)
 	passwordHasher := crypto.NewBcryptHasher()
 	userService := service.NewUserService(userRepository, passwordHasher)

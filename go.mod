@@ -3,7 +3,7 @@ module github.com/BerryTracer/user-service
 go 1.21.3
 
 require (
-	github.com/BerryTracer/common-service v1.0.5
+	github.com/BerryTracer/common-service v1.1.7
 	github.com/golang/mock v1.6.0
 	github.com/stretchr/testify v1.8.4
 	go.mongodb.org/mongo-driver v1.13.0
