@@ -58,5 +58,5 @@ func (d *UserMongoDatabase) Disconnect() error {
 	return d.Client.Disconnect(context.Background())
 }
 
-// Ensure UserMongoDatabase implements Database interface
+// Ensure UserMongoDatabase implements Database interface.
 var _ Database = &UserMongoDatabase{}
