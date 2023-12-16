@@ -4,7 +4,7 @@ import (
 	"errors"
 	"regexp"
 
-	user_service "github.com/BerryTracer/user-service/grpc/proto"
+	userservice "github.com/BerryTracer/user-service/grpc/proto"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -63,8 +63,8 @@ func (udb *UserDB) ToUser() *User {
 }
 
 // ConvertToProto converts a User domain model to a User proto model
-func (u *User) ConvertToProto() *user_service.User {
-	return &user_service.User{
+func (u *User) ConvertToProto() *userservice.User {
+	return &userservice.User{
 		Id:             u.ID,
 		Username:       u.Username,
 		Email:          u.Email,

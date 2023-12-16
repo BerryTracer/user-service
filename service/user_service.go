@@ -37,7 +37,7 @@ func (s *UserServiceImpl) CreateUser(ctx context.Context, username string, email
 		return nil, err
 	}
 
-	user := model.NewUser(username, email, string(hashedPassword))
+	user := model.NewUser(username, email, hashedPassword)
 
 	if err := user.Validate(); err != nil {
 		return nil, err
@@ -52,7 +52,7 @@ func (s *UserServiceImpl) CreateUser(ctx context.Context, username string, email
 	return user, nil
 }
 
-// GetUser implements UserService.
+// GetUserById GetUser implements UserService.
 func (s *UserServiceImpl) GetUserById(ctx context.Context, id string) (*model.User, error) {
 	return s.UserRepository.GetUserById(ctx, id)
 }
