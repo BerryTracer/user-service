@@ -37,6 +37,7 @@ func TestUserMongoRepository_CreateUser(t *testing.T) {
 	}
 }
 
+// TestUserMongoRepository_CreateUser_InvalidID tests the CreateUser method of the UserMongoRepository
 func TestUserMongoRepository_CreateUser_InvalidID(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
