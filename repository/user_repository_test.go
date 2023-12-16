@@ -56,6 +56,7 @@ func TestUserMongoRepository_CreateUser_InvalidID(t *testing.T) {
 	}
 }
 
+// TestUserMongoRepository_CreateUser_FindOne_Error tests the CreateUser method of the UserMongoRepository
 func TestUserMongoRepository_CreateUser_FindOne_Error(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
@@ -153,6 +154,7 @@ func TestUserMongoRepository_GetUserById_InvalidID(t *testing.T) {
 	}
 }
 
+// TestUserMongoRepository_GetUserById_FindOne_Error tests the GetUserById method of the UserMongoRepository
 func TestUserMongoRepository_GetUserById_FindOne_Error(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
@@ -238,6 +240,7 @@ func TestUserMongoRepository_GetUserByEmail(t *testing.T) {
 	}
 }
 
+// TestUserMongoRepository_GetUserByEmail_FindOne_Error tests the GetUserByEmail method of the UserMongoRepository
 func TestUserMongoRepository_GetUserByEmail_FindOne_Error(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
@@ -322,6 +325,7 @@ func TestUserMongoRepository_GetUserByUsername(t *testing.T) {
 	}
 }
 
+// TestUserMongoRepository_GetUserByUsername_FindOne_Error tests the GetUserByUsername method of the UserMongoRepository
 func TestUserMongoRepository_GetUserByUsername_FindOne_Error(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
