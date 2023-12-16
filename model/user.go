@@ -22,7 +22,7 @@ type UserDB struct {
 	HashedPassword string             `bson:"hashed_password" json:"hashed_password"`
 }
 
-// NewUser creates a new User instance
+// NewUser creates a new User instance.
 func NewUser(username, email, hashedPassword string) *User {
 	return &User{
 		ID:             primitive.NewObjectID().Hex(),
@@ -32,7 +32,7 @@ func NewUser(username, email, hashedPassword string) *User {
 	}
 }
 
-// ToUserDB converts a User domain model to a UserDB database model
+// ToUserDB converts a User domain model to a UserDB database model.
 func (u *User) ToUserDB() (*UserDB, error) {
 	var id primitive.ObjectID
 	var err error
@@ -52,7 +52,7 @@ func (u *User) ToUserDB() (*UserDB, error) {
 	}, nil
 }
 
-// ToUser converts a UserDB database model to a User domain model
+// ToUser converts a UserDB database model to a User domain model.
 func (udb *UserDB) ToUser() *User {
 	return &User{
 		ID:             udb.ID.Hex(),
@@ -62,7 +62,7 @@ func (udb *UserDB) ToUser() *User {
 	}
 }
 
-// ConvertToProto converts a User domain model to a User proto model
+// ConvertToProto converts a User domain model to a User proto model.
 func (u *User) ConvertToProto() *userservice.User {
 	return &userservice.User{
 		Id:             u.ID,
@@ -72,7 +72,7 @@ func (u *User) ConvertToProto() *userservice.User {
 	}
 }
 
-// Validate checks if the user's fields meet basic requirements
+// Validate checks if the user's fields meet basic requirements.
 func (u *User) Validate() error {
 	if u.Username == "" {
 		return errors.New("username is required")
