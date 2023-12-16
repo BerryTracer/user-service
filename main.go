@@ -22,7 +22,12 @@ func main() {
 
 	// Initialize the database
 	db := initDatabase(mongodbURI)
-	defer db.Disconnect()
+	defer func(db *database.UserMongoDatabase) {
+		err := db.Disconnect()
+		if err != nil {
+			log.Fatalf("failed to listen: %v\n", err)
+		}
+	}(db)
 
 	// Set up the gRPC server and start listening
 	grpcServer := setupGRPCServer(db)

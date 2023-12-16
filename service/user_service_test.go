@@ -5,10 +5,10 @@ import (
 	"errors"
 	"testing"
 
-	mock_crypto "github.com/BerryTracer/common-service/crypto/mock"
+	mockcrypto "github.com/BerryTracer/common-service/crypto/mock"
 	"github.com/BerryTracer/user-service/model"
-	mock_repository "github.com/BerryTracer/user-service/repository/mock"
-	service "github.com/BerryTracer/user-service/service"
+	mockrepository "github.com/BerryTracer/user-service/repository/mock"
+	"github.com/BerryTracer/user-service/service"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 )
@@ -18,8 +18,8 @@ func TestUserServiceImpl_CreateUser(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockRepo := mock_repository.NewMockUserRepository(ctrl)
-	mockHasher := mock_crypto.NewMockPasswordHasher(ctrl)
+	mockRepo := mockrepository.NewMockUserRepository(ctrl)
+	mockHasher := mockcrypto.NewMockPasswordHasher(ctrl)
 	userService := service.NewUserService(mockRepo, mockHasher)
 
 	ctx := context.Background()
@@ -63,8 +63,8 @@ func TestUserServiceImpl_CreateUser_Repository_Error(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockRepo := mock_repository.NewMockUserRepository(ctrl)
-	mockHasher := mock_crypto.NewMockPasswordHasher(ctrl)
+	mockRepo := mockrepository.NewMockUserRepository(ctrl)
+	mockHasher := mockcrypto.NewMockPasswordHasher(ctrl)
 	userService := service.NewUserService(mockRepo, mockHasher)
 
 	ctx := context.Background()
@@ -99,8 +99,8 @@ func TestUserServiceImpl_CreateUser_BcryptError(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockRepo := mock_repository.NewMockUserRepository(ctrl)
-	mockHasher := mock_crypto.NewMockPasswordHasher(ctrl)
+	mockRepo := mockrepository.NewMockUserRepository(ctrl)
+	mockHasher := mockcrypto.NewMockPasswordHasher(ctrl)
 	userService := service.NewUserService(mockRepo, mockHasher)
 
 	ctx := context.Background()
@@ -126,8 +126,8 @@ func TestUserServiceImpl_CreateUser_ValidationFail(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockRepo := mock_repository.NewMockUserRepository(ctrl)
-	mockHasher := mock_crypto.NewMockPasswordHasher(ctrl)
+	mockRepo := mockrepository.NewMockUserRepository(ctrl)
+	mockHasher := mockcrypto.NewMockPasswordHasher(ctrl)
 	userService := service.NewUserService(mockRepo, mockHasher)
 
 	ctx := context.Background()
@@ -156,8 +156,8 @@ func TestUserServiceImpl_GetUserById(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockRepo := mock_repository.NewMockUserRepository(ctrl)
-	mockHasher := mock_crypto.NewMockPasswordHasher(ctrl)
+	mockRepo := mockrepository.NewMockUserRepository(ctrl)
+	mockHasher := mockcrypto.NewMockPasswordHasher(ctrl)
 	userService := service.NewUserService(mockRepo, mockHasher)
 
 	ctx := context.Background()
@@ -182,8 +182,8 @@ func TestUserServiceImpl_GetUserById_Fail(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockRepo := mock_repository.NewMockUserRepository(ctrl)
-	mockHasher := mock_crypto.NewMockPasswordHasher(ctrl)
+	mockRepo := mockrepository.NewMockUserRepository(ctrl)
+	mockHasher := mockcrypto.NewMockPasswordHasher(ctrl)
 	userService := service.NewUserService(mockRepo, mockHasher)
 
 	ctx := context.Background()
@@ -207,8 +207,8 @@ func TestUserServiceImpl_GetUserByEmail(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockRepo := mock_repository.NewMockUserRepository(ctrl)
-	mockHasher := mock_crypto.NewMockPasswordHasher(ctrl)
+	mockRepo := mockrepository.NewMockUserRepository(ctrl)
+	mockHasher := mockcrypto.NewMockPasswordHasher(ctrl)
 	userService := service.NewUserService(mockRepo, mockHasher)
 
 	ctx := context.Background()
@@ -233,8 +233,8 @@ func TestUserServiceImpl_GetUserByEmail_Fail(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockRepo := mock_repository.NewMockUserRepository(ctrl)
-	mockHasher := mock_crypto.NewMockPasswordHasher(ctrl)
+	mockRepo := mockrepository.NewMockUserRepository(ctrl)
+	mockHasher := mockcrypto.NewMockPasswordHasher(ctrl)
 	userService := service.NewUserService(mockRepo, mockHasher)
 
 	ctx := context.Background()
@@ -258,8 +258,8 @@ func TestUserServiceImpl_GetUserByUsername(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockRepo := mock_repository.NewMockUserRepository(ctrl)
-	mockHasher := mock_crypto.NewMockPasswordHasher(ctrl)
+	mockRepo := mockrepository.NewMockUserRepository(ctrl)
+	mockHasher := mockcrypto.NewMockPasswordHasher(ctrl)
 	userService := service.NewUserService(mockRepo, mockHasher)
 
 	ctx := context.Background()
@@ -284,8 +284,8 @@ func TestUserServiceImpl_GetUserByUsername_Fail(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockRepo := mock_repository.NewMockUserRepository(ctrl)
-	mockHasher := mock_crypto.NewMockPasswordHasher(ctrl)
+	mockRepo := mockrepository.NewMockUserRepository(ctrl)
+	mockHasher := mockcrypto.NewMockPasswordHasher(ctrl)
 	userService := service.NewUserService(mockRepo, mockHasher)
 
 	ctx := context.Background()

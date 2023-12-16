@@ -42,10 +42,13 @@ func NewUserMongoDatabaseConnection(connStr, databaseStr, collectionStr string) 
 		return nil, err
 	}
 
-	collection.Indexes().CreateOne(context.Background(), mongo.IndexModel{
+	_, err = collection.Indexes().CreateOne(context.Background(), mongo.IndexModel{
 		Keys:    map[string]int{"email": 1, "username": 1},
 		Options: options.Index().SetUnique(true),
 	})
+	if err != nil {
+		return nil, err
+	}
 
 	return &UserMongoDatabase{Client: client, Collection: collection}, nil
 }

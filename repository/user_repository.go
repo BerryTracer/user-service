@@ -41,7 +41,7 @@ func (r *UserMongoRepository) CreateUser(ctx context.Context, user *model.User) 
 	return nil
 }
 
-// GetUser implements UserRepository.
+// GetUserById GetUser implements UserRepository.
 func (r *UserMongoRepository) GetUserById(ctx context.Context, id string) (*model.User, error) {
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
