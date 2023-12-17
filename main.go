@@ -35,7 +35,7 @@ func main() {
 }
 
 func getEnvOrPanic(key string) string {
-	value, err := config.LoadEnv(key)
+	value, err := config.LoadEnv(config.NewRealEnvLoader(), key)
 	if err != nil {
 		panic(err)
 	}
@@ -43,7 +43,7 @@ func getEnvOrPanic(key string) string {
 }
 
 func getEnvWithDefaultOrPanic(key, defaultValue string) string {
-	value, err := config.LoadEnvWithDefault(key, defaultValue)
+	value, err := config.LoadEnvWithDefault(config.NewRealEnvLoader(), key, defaultValue)
 	if err != nil {
 		panic(err)
 	}
